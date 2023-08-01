@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.perera.spring.secure.config.SpringSecureAutoConfiguration
