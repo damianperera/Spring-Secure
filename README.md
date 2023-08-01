@@ -1,2 +1,2 @@
-# Spring-Secure
+# Spring Boot Secure
 Spring Starter Secure
