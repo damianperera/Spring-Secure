@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 
-class ResponseInterceptor: HandlerInterceptor {
+class ResponseInterceptor : HandlerInterceptor {
     private val logger = LoggerFactory.getLogger(this::class.java)
     private var targetHeaders: TargetHeaders
 
@@ -26,7 +26,7 @@ class ResponseInterceptor: HandlerInterceptor {
         response.addHeaders()
         response.removeHeaders()
         super.postHandle(request, response, handler, modelAndView).also {
-            logger.debug("Successfully modified headers")
+            logger.debug("Applied OWASP headers")
         }
     }
 
@@ -43,14 +43,15 @@ class ResponseInterceptor: HandlerInterceptor {
         private val restTemplate = RestTemplate()
         fun getTargetHeaders(): TargetHeaders {
             return TargetHeaders(getHeadersToAdd(), getHeadersToRemove()).also {
-                logger.debug("OWASP target headers: {}", it)
+                logger.debug("OWASP headers: {}", it)
             }
         }
 
         private fun getHeadersToAdd(): List<OWASPHeader> {
-            return restTemplate.getForObject(OWASP_HEADERS_ADD_URL, OWASPAddResponse::class.java)?.headers ?: listOf<OWASPHeader>().also {
-                logger.error("Could not fetch target headers from OWASP, some features of this library may not work as expected")
-            }
+            return restTemplate.getForObject(OWASP_HEADERS_ADD_URL, OWASPAddResponse::class.java)?.headers
+                ?: listOf<OWASPHeader>().also {
+                    logger.error("Could not fetch target headers from OWASP, some features of this library may not work as expected")
+                }
         }
 
         private fun getHeadersToRemove(): List<OWASPHeader> {
@@ -66,14 +67,15 @@ class ResponseInterceptor: HandlerInterceptor {
             var headers: List<OWASPHeader>?
         )
 
-        data class OWASPDeleteResponse (
+        data class OWASPDeleteResponse(
             var lastUpdateUtc: String?,
             var headers: List<String>?
         )
 
         private companion object {
             private const val OWASP_HEADERS_ADD_URL = "https://owasp.org/www-project-secure-headers/ci/headers_add.json"
-            private const val OWASP_HEADERS_REMOVE_URL = "https://owasp.org/www-project-secure-headers/ci/headers_remove.json"
+            private const val OWASP_HEADERS_REMOVE_URL =
+                "https://owasp.org/www-project-secure-headers/ci/headers_remove.json"
         }
     }
 }

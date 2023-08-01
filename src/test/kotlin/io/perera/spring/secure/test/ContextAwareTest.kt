@@ -4,6 +4,10 @@ import io.perera.spring.secure.dummy.TestApplication
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = ["logging.level.root=DEBUG"], classes = [TestApplication::class])
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    properties = ["logging.level.root=DEBUG"],
+    classes = [TestApplication::class]
+)
 @AutoConfigureMockMvc
 annotation class ContextAwareTest
