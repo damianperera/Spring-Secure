@@ -1,4 +1,4 @@
-package io.perera.spring.secure.service
+package io.perera.spring.secure.core
 
 import io.perera.spring.secure.domain.OWASPHeader
 import io.perera.spring.secure.domain.TargetHeaders

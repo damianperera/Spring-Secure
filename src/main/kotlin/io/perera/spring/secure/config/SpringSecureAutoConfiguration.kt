@@ -1,6 +1,6 @@
 package io.perera.spring.secure.config
 
-import io.perera.spring.secure.service.ResponseInterceptor
+import io.perera.spring.secure.core.ResponseInterceptor
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
