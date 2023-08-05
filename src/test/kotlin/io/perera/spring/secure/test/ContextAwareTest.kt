@@ -1,6 +1,6 @@
 package io.perera.spring.secure.test
 
-import io.perera.spring.secure.dummy.TestApplication
+import io.perera.spring.secure.sample.TestApplication
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 

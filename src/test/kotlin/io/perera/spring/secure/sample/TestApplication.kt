@@ -1,4 +1,4 @@
-package io.perera.spring.secure.dummy
+package io.perera.spring.secure.sample
 
 import io.perera.spring.secure.annotation.EnableSpringSecure
 import org.springframework.boot.autoconfigure.SpringBootApplication
